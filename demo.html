@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cropit Example</title>
+	<link rel="stylesheet" href="cropit.css">
+	<!-- <script src="https://www.malabodol.com/_resources/backend/dark/assets/js/jquery.min.js"></script> -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="cropit.js"></script>
+</head>
+<body>
+	
+	<form id="ajax_img_upload" action="demo_upload.php" method="POST">
+
+        <div id="image-editor1" class="image-editor">
+
+	        <span>Select image file</span>
+	        <input title="Select image" type="file" class="cropit-image-input" accept="image/*">
+
+	        <div title="Image Preview" class="cropit-preview">
+	        </div>
+
+	        <div class="image-size-label">
+	          Resize image
+	        </div>
+	        <input title="Resize Image" type="range" class="cropit-image-zoom-input"><br><br>
+
+	      	<button title="Rotate Anti Clockwise" type="button" class="rotate-ccw">&#8634;</button>
+	      	<button title="Rotate Clockwise" type="button" class="rotate-cw">&#8635;</button> <br><br>
+
+	        <textarea type="hidden" name="image-data" class="hidden-image-data"></textarea><br>
+
+	        <pre id="catch_error" style="min-height:10px; background: yellow; color:red;">This is optional</pre>
+
+			<input type="submit">
+
+        </div>
+    </form>
+	
+<script>
+$(document).ready(function(){
+
+	var arg = {
+		image_editor 	: '#image-editor1'
+		,error_container : '#catch_error'
+		// ,imgHeight : 500,
+		// ,imgWidth : 500,
+		// ,previewHeight : 500,
+		// ,previewWidth : 500,
+		,debug : true
+	}; 
+
+	initCropit(arg);
+
+});
+</script>
+
+</body>
+</html>
