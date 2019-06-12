@@ -8,7 +8,7 @@
 ````
 <div id="myImgCropper" class="image-editor">
 
-<span>Select image file</span>
+  <label>Select image file</label>
   <input title="Select image" type="file" class="cropit-image-input" accept="image/*">
 
   <div title="Image Preview" class="cropit-preview"></div>
@@ -50,5 +50,5 @@ initCropit(arg);
 <script src="https://raw.githubusercontent.com/an-amin/simply_cropit/master/cropit.min.js"></script>
 ````
 
-### Credits : [scottcheng/cropit](https://github.com/scottcheng/cropit)
-### [scottcheng.github.io/cropit](http://scottcheng.github.io/cropit/)
+### Credits 
+[scottcheng/cropit](https://github.com/scottcheng/cropit) - [scottcheng.github.io/cropit](http://scottcheng.github.io/cropit/)

@@ -1233,46 +1233,59 @@ function initCropit(obj={})
 			originalSize: _cropit.originalSize 
 		});
 		this.hiddenImgData.val(imgData);
-	};
-	_cropit.debug = function(key,msg=null){
-		if(obj.debug){
-			console.log(key+':',msg);
-		}
-		_cropit.msg[key] = msg;
 		if(_cropit.error_container)
-			_cropit.error_container.prepend(JSON.stringify(_cropit.msg)+'<br>');
+			_cropit.error_container.html(null);
+	};
+	_cropit.reset = function(){
+		_cropit.editor.find('.cropit-preview').html(null);
+		_cropit.editor.find('.hidden-image-data').val(null);
+	}
+	_cropit.debug = function(key,msg=null,error=false){
+		if(obj.debug)
+			// console.log(key+':',msg);
+		if(error)
+			_cropit.msg[key] = msg;
+		if(_cropit.error_container)
+			$.each(_cropit.msg, function(k,v){
+				console.log(k,v);
+				if(v.length>0)
+					_cropit.error_container.html(`<b>${k}</b> : ${v} <br>`);
+			});
 	};
 	_cropit.msg = {};
 
 	_cropit.editor.cropit({
 		width  : obj.imgWidth,
 		height : obj.imgHeight, 
-		smallImage : 'allow',
+		// smallImage : 'allow',
 
 		onFileChange : function(){
-			// console.log('Image has been Changed');
+			_cropit.msg = {};
+			_cropit.debug('FileChange', 'Image has been Changed');
 		},
 		onFileReaderError : function(err){
-			// console.log('File read error!', err);
-			_cropit.debug('FileReaderError', err);
+			_cropit.reset();
+			_cropit.debug('FileReaderError', err, true);
 		},
 		onImageLoading : function(){
-			// console.log('File is Loading...');
+			_cropit.debug('ImageLoading', 'File is Loading...');
 		},
 		onImageLoaded : function(){
 			_cropit.updateImgData();
-			// console.log('File Loaded!');
+			_cropit.debug('ImageLoaded', 'File Loaded!');
 		},
 		onImageError : function(err){
-			// console.log('Error',object);
-			_cropit.debug('ImageError', err.message);
+			_cropit.reset();
+			_cropit.debug('ImageError', err.message, true);
 		},
 		onZoomChange : function(num){
 			// updateImgData();
+			_cropit.debug('ZoomChange', 'changing zoom');
 			// console.log('changing zoom', num);
 		},
 		onOffsetChange : function(obj){
 			_cropit.updateImgData();
+			_cropit.debug('OffsetChange', 'changing offset');
 			// console.log('changing offset', obj);
 		}
 	});
