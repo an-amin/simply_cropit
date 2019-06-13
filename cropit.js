@@ -1205,7 +1205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 
-function initCropit(obj={})
+function simplyCropit(obj={})
 {
 	try {
 		if(obj.image_editor==undefined)
@@ -1221,7 +1221,7 @@ function initCropit(obj={})
 	_cropit.imgHeight = obj.imgHeight!=undefined ? obj.imgHeight : 500;
 	_cropit.previewWidth = obj.previewWidth!=undefined ? obj.previewWidth : 250;
 	_cropit.previewWidth = obj.previewWidth!=undefined ? obj.previewWidth : 250;
-	_cropit.quality = obj.quality!=undefined ? obj.quality : 0.75;
+	// _cropit.quality = obj.quality!=undefined ? obj.quality : 0.75;
 	_cropit.originalSize = obj.originalSize!=undefined ? obj.originalSize : false;
 	_cropit.previewHeight = obj.previewHeight!=undefined ? obj.previewHeight : 250;
 	_cropit.editor = $(document).find(obj.image_editor);
@@ -1242,12 +1242,11 @@ function initCropit(obj={})
 	}
 	_cropit.debug = function(key,msg=null,error=false){
 		if(obj.debug)
-			// console.log(key+':',msg);
+			console.log(key+':',msg);
 		if(error)
 			_cropit.msg[key] = msg;
 		if(_cropit.error_container)
 			$.each(_cropit.msg, function(k,v){
-				console.log(k,v);
 				if(v.length>0)
 					_cropit.error_container.html(`<b>${k}</b> : ${v} <br>`);
 			});
@@ -1257,7 +1256,7 @@ function initCropit(obj={})
 	_cropit.editor.cropit({
 		width  : obj.imgWidth,
 		height : obj.imgHeight, 
-		// smallImage : 'allow',
+		smallImage : obj.smallImage!=undefined ? (obj.smallImage==true?'allow':'reject') : 'allow',
 
 		onFileChange : function(){
 			_cropit.msg = {};

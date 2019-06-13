@@ -1,4 +1,5 @@
 # Cropit Made Simple ... 
+Simple Image Cropper. Crop it (JavaScript Image Library) made easy. 
 
 ## Dependency:  `jQuery` 
 
@@ -6,7 +7,7 @@
 ## HTML Markup 
 
 ````
-<div id="myImgCropper" class="image-editor">
+<div id="image-editor" class="image-editor">
 
   <label>Select image file</label>
   <input title="Select image" type="file" class="cropit-image-input" accept="image/*">
@@ -14,14 +15,14 @@
   <div title="Image Preview" class="cropit-preview"></div>
 
   <label class="image-size-label">Resize image</label>
-  <input title="Resize Image" type="range" class="cropit-image-zoom-input"><br><br>
+  <input title="Resize Image" type="range" class="cropit-image-zoom-input">
 
   <button title="Rotate Anti Clockwise" type="button" class="rotate-ccw">&#8634;</button>
-  <button title="Rotate Clockwise" type="button" class="rotate-cw">&#8635;</button> <br><br>
+  <button title="Rotate Clockwise" type="button" class="rotate-cw">&#8635;</button>
 
-  <textarea type="hidden" name="image-data" class="hidden-image-data"></textarea><br>
+  <br><textarea type="hidden" name="image-data" class="hidden-image-data"></textarea>
 
-  <pre id="catch_error">This is optional</pre>
+  <pre id="catch-error">Error Container : This is optional</pre>
 
   <input type="submit">
 
@@ -31,17 +32,24 @@
 ##	JS part: how to initialize 
 
 ````
-var arg = {
-   image_editor     : '#image-editor1'
-  ,error_container  : '#catch_error'  // optional
-  ,imgHeight        : 500             // optional
-  ,imgWidth         : 500             // optional
-  ,previewHeight    : 500             // optional
-  ,previewWidth     : 500             // optional
-  ,debug            : true            // optional
-}; 
+$(document).ready(function(){
 
-initCropit(arg);
+  var arg = {
+      image_editor    : '#image-editor'
+    , error_container : '#catch-error'  // optional
+    , imgHeight       : 500             // optional
+    , imgWidth        : 500             // optional
+    , previewHeight   : 500             // optional
+    , previewWidth    : 500             // optional
+    , quality         : 0.75            // optional
+    , originalSize    : false           // optional
+    , smallImage      : true            // optional
+    , debug           : false           // optional
+  }; 
+
+  simplyCropit(arg);
+
+});
 ````
 
 ### CDN 
