@@ -1304,4 +1304,7 @@ function simplyCropit(obj={})
 		_cropit.editor.cropit('rotateCCW');
 		_cropit.updateImgData();
 	});
+	
+	if(obj.imageSrc!=undefined) 
+		_cropit.editor.cropit('imageSrc', obj.imageSrc );
 }
